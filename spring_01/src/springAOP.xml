@@ -4,8 +4,10 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean id="chinese" class="spi.Chinese">
-        <property name="axe" ref="stoneAxe" />
+   	   <!--依赖注入的两种形式：设置注入，构造注入-->
+       <!--<property name="axe" ref="steelAxe" />       -->
+       <constructor-arg ref="stoneAxe" />
     </bean>
     <bean id="stoneAxe" class="spi.StoneAxe" />
-    <bean id="steelAxe" class= "spi.stoneAxe"/>
+    <bean id="steelAxe" class= "spi.SteelAxe"></bean>
 </beans>
