@@ -10,4 +10,5 @@
     </bean>
     <bean id="stoneAxe" class="spi.StoneAxe" />
     <bean id="steelAxe" class= "spi.SteelAxe"></bean>
+        <bean id="email" class="spi.EmailNotifier" />
 </beans>
