@@ -3,11 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="chinese" class="spi.Chinese">
+    <bean id="chinese" class="spi.PersonFactory" factory-method="getPerson" factory-bean="personFactory">
    	   <!--依赖注入的两种形式：设置注入，构造注入-->
        <!--<property name="axe" ref="steelAxe" />       -->
-       <constructor-arg ref="stoneAxe" />
+       <constructor-arg ref="chinese" />
     </bean>
+    <bean id = "personFactory" class ="spi.PersonFactory"></bean>
     <bean id="stoneAxe" class="spi.StoneAxe" />
     <bean id="steelAxe" class= "spi.SteelAxe"></bean>
         <bean id="email" class="spi.EmailNotifier" />
@@ -20,4 +21,17 @@
         </bean>
         
         <bean id="getContextViaBean" class="spi.GetContextViaBean" /> 
+        <bean  id="personTemplate" abstract="true">
+        	<property name="name" value="zhangsan" />
+        	<property name="axe" value="stoneAxe" />
+        </bean>
+        <bean  id="chinesePerson" parent="personTemplate">
+        	 <property name="axe" value="steelAxe" />
+        </bean>
+        
+        <!--实现FactoryBean,两个属性  -->
+        <bean id="getField" class="spi.GetField">
+        	<property name="targetClass" value="spi.Chinese" />
+        	 <property name="targetField" value="axe" />
+        </bean>
 </beans>
